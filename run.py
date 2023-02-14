@@ -3,6 +3,7 @@ from flask import Flask, render_template, flash, request
 app = Flask(__name__)
 app.secret_key = "xxxx"
 
+# Se crea una lista para guardar las fechas. 
 fechas = []
 
 @app.route('/', methods=['GET', 'POST'])
