@@ -8,16 +8,35 @@
 </head>
 <body>
 
-    <form action="/resultado", method="post">
-        
-        <input type="text" name="nombre" > <br>
+    <!-- <form action="/resultado", method="post"> -->
+    <form method="POST" action="/"> 
+        <h2> Selecciona la fecha de ensayo</h2>
         <input type="date" name="fecha"> <br>
-        <input type="checkbox" id="confirmar_fecha" name="confirmar_fecha" value="Si">
-        <!-- <label for="confirma-fecha"> Si </label> <br> -->
-
         <input type="submit" value="Enviar">      
 
     </form>
     
+    <h2> Fechas seleccionadas: </h2>
+
+      <table>
+        <tr>
+          <th>Fecha</th>
+          <th>Eliminar</th>
+          
+        </tr>
+        {% for ensayo in fechas %}
+        <tr>
+          <td> {{ ensayo }} </td>
+          <td> Eliminar </td>
+          
+        </tr>
+        {% endfor %}
+      </table>
+
+      <form>
+        <input type="submit" value="Guardar fechas y continuar">
+      </form>
+
+
 </body>
 </html>

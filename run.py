@@ -3,10 +3,22 @@ from flask import Flask, render_template, flash, request
 app = Flask(__name__)
 app.secret_key = "xxxx"
 
-@app.route('/')
-def index():
-    flash("Mensaje de prueba")
-    return render_template('index.html', fecha="9 de abril")
+# Se crea una lista para guardar las fechas. 
+fechas = []
+
+@app.route('/', methods=['GET', 'POST'])
+def index():    
+    
+    if request.method == "POST":
+       fecha  = request.form.get('fecha')       
+       fechas.append(fecha)       
+       return render_template('index.html', fechas=fechas) 
+    else:
+        fecha  = ""
+        return render_template('index.html', fechas=fechas)
+    
+
+
 
 @app.route('/resultado', methods=["POST"])
 def resultado():    
@@ -29,7 +41,6 @@ def resultado():
 
     return render_template('resultado.html', nombre=nombre, fecha=fecha, confirmar=confirmar_fecha)
     # return render_template('resultado.html', nombre=nombre)
-
 
 
 if __name__ == '__main__':
